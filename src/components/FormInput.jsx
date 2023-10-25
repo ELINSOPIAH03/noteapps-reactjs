@@ -1,6 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React, { Component, useState } from "react";
 import { Container, Card, Row, Col, Form, Button,  } from "react-bootstrap";
+import {initialData} from "../utils"
 
 function formatDate(date) {
     const options = {
@@ -9,11 +10,12 @@ function formatDate(date) {
         month: "long",
         day: "numeric",
     };
-    return new Date(date).toLocaleDateString(undefined, options);
+    // return new Date(date).toLocaleDateString(undefined, options);
+    return new Date(date).toLocaleDateString("id-ID", options);
 }
 
 function FormInput() {
-    const [notes, setNotes] = useState([]);
+    const [notes, setNotes] = useState(initialData);
     const [newNote, setNewNote] = useState({ title: "", body: "" });
     const [searchTerm, setSearchTerm] = useState("");
 
@@ -142,7 +144,7 @@ function FormInput() {
             ) : (
                 <Row>
                     {filteredNotes.map((note) => (      
-                    <Col key={note.id} xs={12} sm={6} md={3}>
+                    <Col key={note.id} xs={12} sm={6} md={3} className="mb-3">
                         <Card style={{ width: "18rem" }} >
                             <Card.Body>
                                 <Card.Title>{note.title}</Card.Title>
